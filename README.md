@@ -53,7 +53,7 @@
 [SPA vs MPA](https://github.com/ygweric/tech-awesome/issues/23)
 
 [JavaScript面试：什么是函数式编程？](https://github.com/ygweric/tech-awesome/issues/22)
-Previous
+
 [JavaScript面试：什么是闭包？](https://github.com/ygweric/tech-awesome/issues/21)
 
 [在React中创建自定义hook](https://github.com/ygweric/tech-awesome/issues/20)
