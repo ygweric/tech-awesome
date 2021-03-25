@@ -4,6 +4,19 @@
 
 # 目录
 
+[69: JavaScript Symbols深入了解](https://github.com/ygweric/tech-awesome/issues/69)
+[68: JavaScript Proxy代理](https://github.com/ygweric/tech-awesome/issues/68)
+[67: 了解流！微服务和事件编排](https://github.com/ygweric/tech-awesome/issues/67)
+[66: 从头开始编写自己的Node.js Promise库](https://github.com/ygweric/tech-awesome/issues/66)
+[65: 事件驱动的架构模式](https://github.com/ygweric/tech-awesome/issues/65)
+[64: JavaScript中的事件冒泡和事件捕获](https://github.com/ygweric/tech-awesome/issues/64)
+[63: JavaScript中的ES6迭代器](https://github.com/ygweric/tech-awesome/issues/63)
+[62: Node.js的Express，Koa和Hapi Web框架的比较](https://github.com/ygweric/tech-awesome/issues/62)
+[61: 深入了解ES6 JavaScript中的generator和yield](https://github.com/ygweric/tech-awesome/issues/61)
+[60: 使用Service Worker缓存文件](https://github.com/ygweric/tech-awesome/issues/60)
+[59: git bisect入门指南-快速定位错误commit](https://github.com/ygweric/tech-awesome/issues/59)
+[58: 详解3种类型的设计模式](https://github.com/ygweric/tech-awesome/issues/58)
+[57: 使用RSA和OpenSSL分享AES密钥](https://github.com/ygweric/tech-awesome/issues/57)
 [56: React 17中的新JSX增强功能](https://github.com/ygweric/tech-awesome/issues/56)   
 [55: Session 和 JWT 比较](https://github.com/ygweric/tech-awesome/issues/55)   
 [54: js事件循环：微任务和宏任务](https://github.com/ygweric/tech-awesome/issues/54)   
