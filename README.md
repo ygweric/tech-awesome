@@ -4,6 +4,16 @@
 
 # 目录
 
+[79: 测试驱动开发（TDD）](https://github.com/ygweric/tech-awesome/issues/79)                                    
+[78: SaaS, PaaS, IaaS：有什么区别](https://github.com/ygweric/tech-awesome/issues/78)                           
+[77: JavaScript，ES6，ES7，ES10 详细梳理](https://github.com/ygweric/tech-awesome/issues/77)                    
+[76: 双重测试(Test Doubles)是什么意思？](https://github.com/ygweric/tech-awesome/issues/76)                     
+[75: 双重测试 Test Double - fack, stub, mock](https://github.com/ygweric/tech-awesome/issues/75)                
+[74: 响应式CSS grid：终极布局自由](https://github.com/ygweric/tech-awesome/issues/74)                           
+[73: 在React中优化大列表的4种方法](https://github.com/ygweric/tech-awesome/issues/73)                           
+[72: HTTP的Options方法？](https://github.com/ygweric/tech-awesome/issues/72)                     
+[71: 深入了解React Router：递归路径，代码拆分等](https://github.com/ygweric/tech-awesome/issues/71)             
+[70: js如何检查NaN是否等于NaN](https://github.com/ygweric/tech-awesome/issues/70)                               
 [69: JavaScript Symbols深入了解](https://github.com/ygweric/tech-awesome/issues/69)  
 [68: JavaScript Proxy代理](https://github.com/ygweric/tech-awesome/issues/68)  
 [67: 了解流！微服务和事件编排](https://github.com/ygweric/tech-awesome/issues/67)  
