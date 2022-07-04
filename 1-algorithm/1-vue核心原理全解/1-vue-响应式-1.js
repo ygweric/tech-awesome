@@ -1,3 +1,7 @@
+/**
+ * https://segmentfault.com/a/1190000038375749
+ * vue核心原理全解
+ */
 
 function defineReactive(target, key, value) {
   // 深度监听（对象）
@@ -61,5 +65,5 @@ const data = {
 // data 实现了双向绑定，深度监听
 Observer(data)
 
-// data.info.address = '上海' // 深度监听
-// data.nums.push(4) // 监听数组
+data.info.address = '上海' // 深度监听
+data.nums.push(4) // 监听数组
