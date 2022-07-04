@@ -1,7 +1,20 @@
 /**
  * https://segmentfault.com/a/1190000038375749
  * vue核心原理全解
+ * 自定义响应式函数 Object.defineProperty
+ * 监听函数
  */
+
+/** 
+* 优势
+*  兼容性好，支持 IE9
+* 不足
+*  无法监听数组的变化
+*  必须遍历对象的每个属性
+*  必须深层遍历嵌套的对象
+*  无法监听新增属性、删除属性
+*  需要在开始时一次性递归所有属性
+*/
 
 function defineReactive(target, key, value) {
   // 深度监听（对象）
@@ -9,9 +22,11 @@ function defineReactive(target, key, value) {
   // 核心API - 响应
   Object.defineProperty(target, key, {
     get: function () {
+      console.log(`Object.defineProperty get: ${key}`);
       return value
     },
     set: function (newVal) {
+      console.log(`Object.defineProperty set: ${key}=${newVal}`);
       if (value !== newVal) {
         // 深度监听（对象）
         Observer(newVal)
@@ -35,6 +50,7 @@ const methods = ['push', 'pop', 'shift', 'unshift', 'splice']
 methods.forEach(methodName => {
   arrProto[methodName] = function () {
     updateView(); // 视图更新
+    console.log(`Array.prototype method: ${methodName} args: ${JSON.stringify(arguments)}`);
     oldArrayProperty[methodName].call(this, ...arguments) // 调用数组原型方法进行更新
   }
 });
