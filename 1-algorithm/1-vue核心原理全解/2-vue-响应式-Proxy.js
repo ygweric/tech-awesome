@@ -6,6 +6,16 @@
  * 监听函数
  */
 
+/**
+ * 优势
+ *  Proxy 可以直接监听对象而非属性，可以监听新增/删除属性；
+ *  Proxy 可以直接监听数组的变化；
+ *  Proxy 有多达 13 种拦截方法,不限于 apply、ownKeys、deleteProperty、has 等等是 Object.defineProperty 不具备的；
+ *  Proxy 返回的是一个新对象,我们可以只操作新的对象达到目的,而 Object.defineProperty 只能遍历对象属性直接修改；
+ * 不足
+ *  兼容性问题，而且无法使用 polyfill 抹平（es5 中没有可以模拟Proxy的函数/方法）
+ */
+
 
 function updateView() {
   console.log('视图更新')
