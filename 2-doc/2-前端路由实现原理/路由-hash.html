@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="#/">主页</a>
+  <a href="#/home">home</a>
+  <a href="#/index">index</a>
+  <div id="content"></div>
+
+  <script>
+    /*
+    URL中hash值只是客户端的一种状态，也就是说当向服务器端发出请求时，hash部分不会被发送。hash值的改变，都会在浏览器的访问历史中增加一个记录。因此我们能通过浏览器的回退、前进按钮控制hash的切换。我们可以使用hashchange事件来监听hash的变化。
+    */
+
+    class Router {
+      constructor({ routes }) {
+        console.log(`Router constructor`);
+        this.routes = routes;
+        this.renderPages = {};
+        this.init();
+        this.routes.forEach((item) => {
+          console.log(`setting renderPages[${item.path}]`);
+          this.renderPages[item.path] = function () {
+            document.getElementById('content').innerHTML = item.component;
+          };
+        })
+      }
+
+      init() {
+        window.addEventListener('load', this.updateLocation.bind(this))
+        window.addEventListener('hashchange', this.updateLocation.bind(this))
+      }
+
+      updateLocation() {
+        let pathRes = window.location.hash.slice(1);
+        console.log(`renderPages :${pathRes}`);
+        console.log(`this.renderPages :`, this.renderPages);
+        this.renderPages[pathRes]();
+      }
+    }
+
+    new Router({
+      routes: [
+        {
+          path: '',
+          component: "主页"
+        },
+        {
+          path: '/',
+          component: "主页"
+        },
+        {
+          path: '/home',
+          component: "home"
+        },
+        {
+          path: '/index',
+          component: 'index'
+        }
+      ]
+    })
+  </script>
+</body>
+
+</html>

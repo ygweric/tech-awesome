@@ -57,5 +57,5 @@ server.get('/', (req, res) => {
 server.use(express.static('.'))
 
 server.listen(3000, () => {
-  console.log('ready')
+  console.log('ready open: http://localhost:3000/')
 })
