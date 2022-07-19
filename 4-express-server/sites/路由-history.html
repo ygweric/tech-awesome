@@ -1,4 +1,4 @@
-<!--  需要放在服务器容器中 在/4-express-server中运行 node server.js, 打开 http://localhost:3000/sites/路由-history.html  -->
+<!--  需要放在服务器容器中 在/4-express-server中运行 node server.js, 打开 http://localhost:3000/sites/路由-history-2.html  -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,18 +24,24 @@
   </div>
 
   <script>
+    // 声明HistoryRouter
     class HistoryRouter {
       currentUrl = "";
-      handlers = {};
 
       constructor() {
         this.refresh = this.refresh.bind(this);
-        this.addStateListener();
+        this.addStateListener(); // 添加pushstate/replacestate监听事件
+
+        // 监听所有history事件
         window.addEventListener("load", this.refresh, false);
         window.addEventListener("popstate", this.refresh, false);
         window.addEventListener("pushState", this.refresh, false);
         window.addEventListener("replaceState", this.refresh, false);
       }
+
+      /**
+       * window只有 load/popsate的事件，没有pushstate/replacestate的事件，这个函数做下hook监听
+       */
       addStateListener() {
         const listener = function (type) {
           var orig = history[type];
@@ -50,11 +56,17 @@
         window.history.pushState = listener("pushState");
         window.history.replaceState = listener("replaceState");
       }
+      // state事件统一回调入口
       refresh(event) {
+        console.log(`refresh ${location.pathname}`);
         this.currentUrl = location.pathname;
-        this.emit("change", location.pathname);
+        this.emit("change", location.pathname); //触发change事件
         document.querySelector("#app span").innerHTML = location.pathname;
       }
+
+
+      // 事件管理emit/on模式
+      handlers = {};
       on(evName, listener) {
         this.handlers[evName] = listener;
       }
@@ -65,29 +77,36 @@
         }
       }
     }
+
+    //创建HistoryRouter
     const router = new HistoryRouter();
+    //处理change事件
     router.on("change", function (curUrl) {
-      console.log(curUrl);
+      console.log(`router.on change `, curUrl);
       document.querySelector(".current span").innerHTML = curUrl;
       document.querySelector(".history-len span").innerHTML = history.length;
     });
 
+    //为button添加事件来测试
     document.querySelector(".back").addEventListener("click", function () {
+      console.log(`click back`);
       window.history.back();
     });
     document.querySelector(".go").addEventListener("click", function () {
+      console.log(`click go`);
       window.history.go(1);
     });
     document.querySelector(".pushstate").addEventListener("click", function () {
+      console.log(`click pushstate`);
       const url = Math.random().toString(36).slice(-6) + ".html";
       window.history.pushState({}, "", url);
     });
     document.querySelector(".replacestate").addEventListener("click", function () {
+      console.log(`click replacestate`);
       const url = Math.random().toString(36).slice(-6) + ".html";
       window.history.replaceState({}, "", url);
     });
   </script>
-
 </body>
 
 </html>
