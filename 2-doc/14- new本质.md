@@ -19,7 +19,8 @@
 **替换实现`new`**
 ```js
   function fn() { }
-  var obj = new Object();
+  // var obj = new Object();
+  var obj = Object.create();
   obj.__proto__ = fn.prototype;
   fn.call(obj);
 ```
