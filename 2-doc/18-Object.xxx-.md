@@ -1,6 +1,6 @@
 
-# Object.create()
-**`Object.create()`** 方法用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）
+# [Object.create()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+**`Object.create(proto, propertiesObject)`** 方法用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）
 
 ```js
 const person = {
@@ -8,7 +8,7 @@ const person = {
   printIntroduction: function() {
     console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
   }
-};
+};000
 const me = Object.create(person);
 
 me.__proto__ === person; // true
