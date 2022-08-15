@@ -21,3 +21,49 @@
 2.  函数作用域：方法中的 this 指向调用它的对象；如果没有调用者就指向window。
 3.  构造函数里：构造函数（或者ES6+的类）中的 this 指向新生成的实例对象。
 4. `setTimeout` 和 `setInterval` 包裹的this指向`window`
+
+# 在闭包中使用 `this` 对象
+
+进一步说，**this和它声明环境无关，而完全取决于他的执行环境**。务必牢记这句话。
+
+```js
+var name = 'The window';
+var object = {
+    name: 'my Object',
+    getName: function() {
+        return function() {
+            return this.name;
+        }
+    }
+}
+console.log(object.getName()()); // The window
+```
+
+
+-   第一个就是正常的调用，打印 `“my Object”`
+-   第二个就是在调用这个方法前先给它加上了括号，但是和 object.getName 是一样的，所以打印为 `"my Object"`
+-   第三个是先执行了一个赋值语句，然后再调用赋值后的结果。因为这个赋值表达式是函数本身，所以此时调用，`this` 指向的是 `window`，打印的是 `"The window"`
+
+```js
+var name = 'The window';
+var object = {
+    name: 'my Object',
+    getName: function() {
+        return this.name
+    }
+}
+console.log(object.getName()); // my Object
+console.log((object.getName)()); // my Object
+console.log((object.getName = object.getName)()); // The window
+```
+
+
+
+
+
+
+
+
+
+
+
