@@ -13,21 +13,13 @@ function useState(initValue) {
 
 
 function render() {
-  index = 0
-  const [age, setAge] = useState(18)
-  console.log(`age: ${age}`);
-  setTimeout(() => {
-    setAge(age + 1)
-  }, 500);
+  let age = 18
+  useEffect(() => {
+    console.log(`age: ${age}`);
+  }, [age])
 }
 
 
-
 render()
-
-
-
-
-
 
 
