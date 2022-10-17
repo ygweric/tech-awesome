@@ -1,63 +1,59 @@
+/**
+ * async的实现
+ * @author waldon
+ * @param {*} generatorFn - 生成器函数
+ */
+function asyncWrapper(generatorFn) {
+  return new Promise((resolve) => {
+    const iterator = generatorFn()
 
+    let generator = { done: false }
+    let count = 100
+    while (count--) {
+      if (!generator.done) {
+        iterator.next().then(res => {
 
-function* generator(asyncFunc) {
-  yield asyncFunc()
+        })
+      } else {
+        resolve(generator.value)
+      }
+    }
+
+    iterator.next().value.then(res => {
+      // console.log(res)
+      iterator.next(res).value.then(res => {
+        // console.log(res)
+        console.log(iterator.next(res).value);
+      })
+    })
+
+  })
+
 }
 
-const generatorFuncs = []
-function myAwait(asyncFunc) {
-  if (!generatorFuncs[0]) {
-    generatorFuncs.push(generator(asyncFunc))
-  }
-  return generatorFuncs[0].next().value
+// 测试
+
+const getDate = () => new Promise((resolve) => setTimeout(() => resolve(Date.now()), 1000))
+
+function* testG() {
+  const date = yield getDate()
+  console.log('date: ', date)
+  const date2 = yield getDate()
+  console.log('date2: ', date2)
+  return 'success'
 }
 
+// const iterator = testG()
+// iterator.next().value.then(res => {
+//   // console.log(res)
+//   iterator.next(res).value.then(res => {
+//     // console.log(res)
+//     console.log(iterator.next(res).value);
+//   })
+// })
 
-function getNameASync(params) {
-  // return new Promise(function (resolve, reject) { setTimeout(() => { resolve('bob') }, 500); })
-  return Promise.resolve('bob')
-}
+asyncWrapper(testG).then((res) => {
+  console.log(res)
+})
 
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-let getNameSync = myAwait(getNameASync)
-console.log('name: ', getNameSync);
-console.log('name: ', getNameSync);
-console.log('name: ', getNameSync);
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-// setTimeout(async () => {
-//   let name = myAwait(getNameASync())
-//   // let name = await getNameASync()
-//   console.log('name: ', name);
-// });
-
-
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-// function* generator(i) {
-//   yield i;
-//   yield i + 10;
-// }
-
-// const gen = generator(10);
-
-// console.log(gen.next().value);
-// // expected output: 10
-
-// console.log(gen.next().value);
-// // expected output: 20
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-// let iterator = generator(getNameASync)
-// console.log(iterator.next());
-
-// function* generator2() {
-//   yield getNameASync()
-// }
-// let iterator = generator2()
-// console.log(iterator.next());
+// 期望顺序输出 date date2 success
