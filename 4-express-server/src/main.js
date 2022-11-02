@@ -1,6 +1,11 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
+
+// http://localhost:3010/1.mp3
+app.use(cors());
+app.use(express.static("sites"));
 
 app.options("/", function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -12,4 +17,7 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.listen(3010);
+const port = 3010;
+
+console.log(`running on http://localhost:${port}/ `);
+app.listen(port);
