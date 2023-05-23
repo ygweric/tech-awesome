@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
-
 module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
@@ -10,30 +9,22 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 2020,
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   env: {
     'browser': true,
     'node': true,
-    'vue/setup-compiler-macros': true,
+    'vue/setup-compiler-macros': true
   },
   plugins: ['@typescript-eslint'],
-  extends: [
-    // Airbnb JavaScript Style Guide https://github.com/airbnb/javascript
-    'airbnb-base',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['airbnb-base', 'plugin:@typescript-eslint/recommended', 'plugin:import/recommended', 'plugin:import/typescript', 'plugin:vue/vue3-recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   settings: {
     'import/resolver': {
       typescript: {
-        project: path.resolve(__dirname, './tsconfig.json'),
-      },
-    },
+        project: path.resolve(__dirname, './tsconfig.json')
+      }
+    }
   },
   rules: {
     'prettier/prettier': 1,
@@ -52,19 +43,15 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-empty-function': 1,
     '@typescript-eslint/no-explicit-any': 0,
-    'import/extensions': [
-      2,
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
+    'import/extensions': [2, 'ignorePackages', {
+      js: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never'
+    }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-param-reassign': 0,
     'prefer-regex-literals': 0,
-    'import/no-extraneous-dependencies': 0,
-  },
+    'import/no-extraneous-dependencies': 0
+  }
 };
