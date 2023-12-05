@@ -13,3 +13,40 @@ https://leetcode.cn/problems/kth-largest-element-in-an-array/description/
 
 
 */
+
+
+
+
+function quickSort(nums, left_ = 0, right_ = nums.length - 1) {
+  if (!nums || nums.length <= 1 || left_ >= right_) return nums;
+
+  let left = left_;
+  let right = right_;
+
+  while (left <= right) {
+    if (nums[left + 1] < nums[left]) {
+      let tmp = nums[left + 1];
+      nums[left + 1] = nums[left];
+      nums[left] = tmp;
+      left++;
+    } else {
+      if (left !== right) {
+        let tmp = nums[left + 1];
+        nums[left + 1] = nums[right];
+        nums[right] = tmp;
+        right--;
+      } else {
+        right--;
+      }
+    }
+  }
+
+  quickSort(nums, left_, left-1);
+  quickSort(nums, left + 1, right_);
+  return nums;
+}
+
+
+var findKthLargest = function(nums, k) {
+  return quickSort(nums).slice(k-1, k)
+};
