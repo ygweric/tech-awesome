@@ -71,11 +71,11 @@ const data = {
 observe(data);
 
 // 测试
-data.name = 'YI' // YI
-data.age = { num: 21 }; //(监听成功)输出 --> 数据更新
-data.information.tel = '13456xxx234' // 13456xxx234
-data.age.num = 110 // 110
-data.myCars.push('AE86') // (监听成功)输出 --> 数据更新
+data.name = 'YI_new' // YI
+data.age = { num: 222221 }; //(监听成功)输出 --> 数据更新
+data.information.tel = '13456xxx234_new' // 13456xxx234
+data.age.num = 1111111110 // 1111111110
+data.myCars.push('AE86_new') // (监听成功)输出 --> 数据更新
 
 
 console.log(JSON.stringify(data, null, 2));

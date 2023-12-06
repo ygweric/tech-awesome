@@ -14,6 +14,7 @@ function updateView(newVal) {
 
 
 let arrayPrototype =  Array.prototype
+// 浅拷贝一份，之所以浅拷贝，是因为如果不拷贝，直接在原来的prototype上修改，下面的“Array.prototype[method].call”会循环调用
 let copyArrayPrototype = Object.create(arrayPrototype)
 // const methods = ["push", "pop", "shift", "unshift", "splice"];
 const methods = ["push"];
@@ -21,7 +22,7 @@ methods.forEach((method) => {
   // let realMethod = arrayPrototype[method]
   // copyArrayPrototype[method] = ()=>{
     // 这里不能用箭头函数，否则this和arguments是继承上一级作用于的值，不是当前数组的作用域
-  copyArrayPrototype[method] = function () {
+    copyArrayPrototype[method] = function () {
     // realMethod.call(this , ...arguments)
     Array.prototype[method].call(this , ...arguments)
     updateView(this)
