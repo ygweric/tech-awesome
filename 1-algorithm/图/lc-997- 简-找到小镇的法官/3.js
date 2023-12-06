@@ -19,6 +19,8 @@ https://leetcode.cn/problems/find-the-town-judge/description/
 /*
 前两天看的题解
 今天做，一遍成功
+2： 新增剪枝，减少时间
+3： 剪枝后，不需要记录max状态
 */
 var findJudge = function(n, trust) {
   let persons = Array.from({length: n+1}, ()=>({inDegree: 0, outDegree:0}))
@@ -27,18 +29,18 @@ var findJudge = function(n, trust) {
     persons[b].inDegree++
   });
     
-  let maxInDegreePerson = persons[1]
-  for (let i = 2; i < persons.length; i++) {
+  for (let i = 1; i < persons.length; i++) {
     const person = persons[i];
-    maxInDegreePerson = maxInDegreePerson.inDegree>person.inDegree?maxInDegreePerson:person
+
+    if (person.outDegree ===0 && person.inDegree === n-1) {
+      return i
+    }
   }
 
-  if (maxInDegreePerson.outDegree ===0 && maxInDegreePerson.inDegree === n-1) {
-    return persons.indexOf(maxInDegreePerson)
-  }
   return -1
 };  
 
+console.log(findJudge(1, [])); // 1
 console.log(findJudge(2, [[1,2]])); // 2
 console.log(findJudge(3, [[1,3],[2,3]])); // 3
 console.log(findJudge(3, [[1,3],[2,3],[3,1]])); //-1
