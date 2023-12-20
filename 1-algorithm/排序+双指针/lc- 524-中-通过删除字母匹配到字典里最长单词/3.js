@@ -20,6 +20,8 @@ https://leetcode.cn/problems/longest-word-in-dictionary-through-deleting/descrip
 
 */
 
+const getLogResultFn = require('../../utils/logResult')
+
 var findLongestWord = function (s, dictionary) {
   let matchDic = '';
   for (const dic of dictionary) {
@@ -51,7 +53,10 @@ var findLongestWord = function (s, dictionary) {
   return matchDic;
 };
 
-console.log(findLongestWord("abpcplea", ["ale", "apple", "monkey", "plea"])); // "apple"
-console.log(findLongestWord("abpcplea", ["a", "b", "c"])); // "a"
-console.log(findLongestWord("abce", ["abe", "abc"])); // "abc"
-console.log(findLongestWord("aaa",["aaa","aa","a"])); // "aaa"
+const logResult = getLogResultFn(findLongestWord);
+
+logResult("abpcplea", ["ale", "apple", "monkey", "plea"]); // "apple"
+logResult("abpcplea", ["a", "b", "c"]); // "a"
+logResult("abce", ["abe", "abc"]); // "abc"
+logResult("aaa",["aaa","aa","a"]); // "aaa"
+
