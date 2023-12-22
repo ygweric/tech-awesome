@@ -28,6 +28,10 @@ https://leetcode.cn/problems/search-in-rotated-sorted-array/
     内存消耗大，怎么也搞不出来
 
   4. 又看了一遍题解，发现自己还是被绕进去了，再来一次
+    执行用时分布,60,ms,击败,74.68%,使用 JavaScript 的用户,
+    消耗内存分布,41.04,MB,击败,47.09%,使用 JavaScript 的用户
+  总算速度和内存都还行了，但是最后相邻的判断很不好，回头在研究下
+
 */
 
 const getLogResultFn = require("../../utils/logResult");
@@ -49,30 +53,40 @@ var search = function (nums, target) {
   let leftIndex = 0;
   let rightIndex = nums.length - 1;
 
-  while (leftIndex <= rightIndex) {
-    console.log(`leftIndex: ${leftIndex}, rightIndex: ${rightIndex}`);
+  while (leftIndex < rightIndex-1) {
+    // console.log(`leftIndex: ${leftIndex}, rightIndex: ${rightIndex}`);
     let centerIndex = Math.floor((rightIndex + leftIndex) / 2);
     let centerNum = nums[centerIndex];
     if (centerNum === target) {
       return centerIndex;
     }
-    if (centerIndex === leftIndex) { // 最后时候rightIndex和leftIndex相邻
-      return nums[centerIndex] === target ? 0 : -1;
-    }
 
-    if (nums[0] < nums[centerIndex]) { // 左侧有序
-      if (nums[leftIndex] <= target && target <= nums[centerIndex]) { // 在center左侧
-        rightIndex = centerIndex
-      } else { // 在center右侧
-        leftIndex = centerIndex
+    if (nums[0] < nums[centerIndex]) {
+      // 左侧有序
+      if (nums[leftIndex] <= target && target <= nums[centerIndex]) {
+        // 在center左侧
+        rightIndex = centerIndex;
+      } else {
+        // 在center右侧
+        leftIndex = centerIndex;
       }
-    }else { // 右侧有序
-      if (nums[centerIndex] <= target && target <= nums[rightIndex]) { // 在center右侧
-        leftIndex = centerIndex
-      } else { // 在center左侧
-        rightIndex = centerIndex
+    } else {
+      // 右侧有序
+      if (nums[centerIndex] <= target && target <= nums[rightIndex]) {
+        // 在center右侧
+        leftIndex = centerIndex;
+      } else {
+        // 在center左侧
+        rightIndex = centerIndex;
       }
     }
+  }
+
+  // 最后时候rightIndex和leftIndex相邻
+  if (nums[leftIndex] === target) {
+    return leftIndex
+  } else  if (nums[rightIndex] === target) {
+    return rightIndex
   }
 
   return -1;
@@ -81,9 +95,10 @@ var search = function (nums, target) {
 const logResult = getLogResultFn(search);
 
 memoryTime.load();
-// logResult([4, 5, 6, 7, 0, 1, 2], 0); // 4
-// logResult([4, 5, 6, 7, 0, 1, 2], 3); // -1
-// logResult([1], 0); // -1
-// logResult([5, 1, 3], 5); // 0
+logResult([4, 5, 6, 7, 0, 1, 2], 0); // 4
+logResult([4, 5, 6, 7, 0, 1, 2], 3); // -1
+logResult([1], 0); // -1
+logResult([5, 1, 3], 5); // 0
 logResult([3, 4, 5, 6, 1, 2], 2); // 5
+logResult([1,3], 1); // 0
 memoryTime.log(); //
