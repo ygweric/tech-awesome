@@ -57,5 +57,11 @@ var getLevelTree = (root) => {
   return numArr;
 };
 
-console.log(getLevelTree(generateTree([-1, 0, 3, -2, 4, null, null, 8])));
+// console.log(getLevelTree(generateTree([-1, 0, 3, -2, 4, null, null, 8])));
 // console.log(getLevelTree(generateTree([3, 1, 2, 3, 4, 5, 6, 7, 8])));
+
+module.exports = {
+  TreeNode,
+  generateTree,
+  getLevelTree
+};

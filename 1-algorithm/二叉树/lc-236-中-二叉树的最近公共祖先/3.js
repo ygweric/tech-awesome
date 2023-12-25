@@ -1,40 +1,3 @@
-function TreeNode(val, left, right) {
-  this.val = val;
-  this.left = left;
-  this.right = right;
-}
-
-var generateTree = function (nums) {
-  let nodeArr = new Array(nums.length);
-  for (let i = nums.length - 1; i >= 0; i--) {
-    let val = nums[i];
-    if (val != null) {
-      if (!nodeArr[i]) {
-        nodeArr[i] = new TreeNode(val, null, null); // 第一次被初始化
-      } else {
-        nodeArr[i].val = val; // 在下面给 parentNode 设置左右孩子时候，已经 new 过了
-      }
-    }
-
-    let curNode = nodeArr[i];
-    let isLeft = i % 2 !== 0;
-    if (i !== 0) {
-      let parentNodeIndex = Math.floor((i - 0.1) / 2);
-      if (!nodeArr[parentNodeIndex]) nodeArr[parentNodeIndex] = new TreeNode();
-
-      let parentNode = nodeArr[parentNodeIndex];
-
-      if (isLeft) {
-        parentNode.left = curNode;
-      } else {
-        parentNode.right = curNode;
-      }
-    }
-  }
-
-  // console.log(JSON.stringify(nodeArr[0], null, 2));
-  return nodeArr[0];
-};
 
 
 /*
@@ -53,6 +16,8 @@ https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description
    优化：看完题解，懂了50%把，手写一次，看行不行
    改进3：上一个结果出来了，但是逻辑不是很清楚，又看一遍题解，这里再写一次
 */
+
+const {TreeNode, generateTree} = require("../../utils/arr2tree");
 
 /**
  *

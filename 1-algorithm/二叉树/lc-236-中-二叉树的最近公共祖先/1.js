@@ -1,35 +1,4 @@
 
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
-
-var generateTree = function (nums) {
-  let nodeArr = [];
-  nums.forEach((_) => {
-    nodeArr.push(new TreeNode(0, null, null));
-  });
-
-  for (let i = nums.length - 1; i > 0; i--) {
-    let val = nums[i];
-    let curNode = nodeArr[i];
-    let isLeft = i % 2 !== 0;
-    let parentNode = nodeArr[Math.floor((i - 0.1) / 2)];
-
-    curNode.val = val;
-    if (isLeft) {
-      parentNode.left = curNode;
-    } else {
-      parentNode.right = curNode;
-    }
-  }
-
-  return nodeArr[0];
-};
-
-
-
 /*
 https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/
 236. 二叉树的最近公共祖先
@@ -41,7 +10,7 @@ https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description
 题解： https://www.bilibili.com/video/BV1Qu4y1P7kg?p=10&vd_source=80df5fba01fe79535a6107a33a26594c
  */
 
-
+const {TreeNode, generateTree} = require("../../utils/arr2tree");
 /*
    做不出来呀，说是腾讯的题，还是看题解吧
 */
