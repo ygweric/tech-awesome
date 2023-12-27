@@ -21,6 +21,10 @@ const printMatrix = require("../../utils/array2d");
     执行用时分布,104,ms,击败,38.83%,使用 JavaScript 的用户,
     消耗内存分布,52.05,MB,击败,10.09%,使用 JavaScript 的用户
 
+ 3. 精简了一下，但效果不明显，内存占用的高,但我的时间复杂度为： O(1)
+    执行用时分布,100,ms,击败,45.24%,使用 JavaScript 的用户,
+    消耗内存分布,52.43,MB,击败,9.12%,使用 JavaScript 的用户
+
 */
 var maximalSquare = function (matrix) {
   if (matrix.length === 0 || matrix[0].length === 0) {
@@ -31,41 +35,45 @@ var maximalSquare = function (matrix) {
   let maxArea = 0;
 
   for (let i = 0; i < m; i++) {
-    for (let j = 0; j < n; j++) {
+    matrix[i][0] = parseInt(matrix[i][0]);
+    if (maxArea === 0 && matrix[i][0] > 0) {
+      maxArea = 1; // 先设为保底的 1
+    }
+  }
+  for (let j = 0; j < n; j++) {
+    matrix[0][j] = parseInt(matrix[0][j]);
+    if (maxArea === 0 && matrix[0][j] > 0) {
+      maxArea = 1; // 先设为保底的 1
+    }
+  }
+
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
       // console.log(`>>>>>> i: ${i}, j: ${j}`);
       // console.log(`maxArea: ${maxArea}`);
       // console.log(matrix);
-      if (i === 0 || j === 0) {
-        // console.log('---> ',matrix);
-        matrix[i][j] = parseInt(matrix[i][j]);
-        if (maxArea === 0 && matrix[i][j] > 0) {
-          maxArea = 1; // 先设为保底的 1
-        }
-        continue;
-      }
 
-      if (matrix[i - 1][j - 1] === "0") {
-        // matrix[i][j] 不变
+      if (matrix[i - 1][j - 1] === 0 || matrix[i][j] === "0") {
+        // last 节点是0 , matrix[i][j] 不变
         matrix[i][j] = parseInt(matrix[i][j]);
       } else {
-        // last is not 0
-        if (matrix[i][j] === "0") {
-          matrix[i][j] = 0;
+        // add new node
+        if (
+          matrix[i - 1][j - 1] > 0 &&
+          matrix[i][j - 1] > 0 &&
+          matrix[i - 1][j] > 0
+        ) {
+          let minArea = Math.min(
+            matrix[i - 1][j - 1],
+            matrix[i][j - 1],
+            matrix[i - 1][j]
+          );
+          let lastWidth = Math.sqrt(minArea);
+
+          matrix[i][j] = minArea + lastWidth * 2 + 1;
         } else {
-          // add new node
-          if (matrix[i - 1][j - 1] > 0) {
-            let minArea =   Math.min(
-              matrix[i - 1][j - 1],
-              matrix[i][j - 1],
-              matrix[i - 1][j]
-            )
-            let lastWidth = Math.sqrt(minArea);  
-              
-              matrix[i][j] =  minArea + lastWidth * 2 + 1;
-          } else {
-            //自己是1，则最少是1，不管前面的邻居设么情况
-            matrix[i][j] = 1;
-          }
+          //自己是1，则最少是1，不管前面的邻居设么情况
+          matrix[i][j] = 1;
         }
       }
       maxArea = Math.max(maxArea, matrix[i][j]);
