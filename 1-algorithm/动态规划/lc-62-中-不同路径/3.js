@@ -22,20 +22,26 @@ https://leetcode.cn/problems/unique-paths/description/?envType=list&envId=6q66ue
     2. 动态规划能做出来，但是内存多了，
      官方题解用的滚动数组，很烧脑，不愧是中等难度，很难懂，再好好理解下，回头再试试，太精妙了
 
+    3. 2024年1月10日 复习
+     滚动数组依然精妙，这次比较清楚，回头重新复习
+
 */
-var uniquePaths = function (m, n) {
-  const f = new Array(n).fill(1);
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      f[j] += f[j - 1];
-      console.log(JSON.stringify(f));
+var uniquePaths = function (m_, n_) {
+  let m = Math.max(m_, n_);
+  let n = Math.min(m_, n_);
+
+  let dpArr = Array.from({ length: m }, () => 1);
+
+  for (let i = 1; i < n; i++) {
+    for (let j = 1; j < m; j++) {
+      dpArr[j] += dpArr[j - 1] ;
     }
   }
-  return f[n - 1];
+  return dpArr[m - 1];
 };
 
 console.log(uniquePaths(3, 7)); // 28
-// console.log(uniquePaths(7, 3)); // 28
-// console.log(uniquePaths(3, 2)); // 3
-// console.log(uniquePaths(3, 3)); // 6
-// console.log(uniquePaths(5, 9)); // 495
+console.log(uniquePaths(7, 3)); // 28
+console.log(uniquePaths(3, 2)); // 3
+console.log(uniquePaths(3, 3)); // 6
+console.log(uniquePaths(5, 9)); // 495
