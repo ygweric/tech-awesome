@@ -7,7 +7,7 @@ https://leetcode.cn/problems/find-the-duplicate-number/
 
  */
 var findDuplicate = function (nums) {
-  //
+  // todo 
 };
 
 console.log(findDuplicate([1, 3, 4, 2, 2])); // 2
