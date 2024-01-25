@@ -14,18 +14,68 @@ https://leetcode.cn/problems/next-permutation/description/
 必须 原地 修改，只允许使用额外常数空间。
 */
 
-var nextPermutation = function(nums) {
+/*
+    1. 看了好几遍题解才明白，自己写了一遍就更清晰了，回头复习，2024年1月25日
 
+
+*/
+var nextPermutation = function (nums) {
+  // find the first i from right, which nums[i]<nums[i+1]
+
+  if (!nums || nums.length === 0) {
+    return [];
+  }
+  if (nums.length === 1) {
+    return nums;
+  }
+  if (nums.length === 2) {
+    // console.log([nums[1], nums[0]]);
+    // return [nums[1], nums[0]];
+    return nums.reverse()
+  }
+
+  let i = null;
+
+  for (let k = nums.length - 2; k >= 0; k--) {
+    if (nums[k] < nums[k + 1]) {
+      i = k;
+      break;
+    }
+  }
+
+  if (i == null) {
+    // is the largest one ,reverse it to get the smallest one
+    return nums.reverse()
+  }
+
+  // find the first j from right which nums[i]<nums[j]
+
+  let j = 0;
+  for (let k = nums.length - 1; k > i; k--) {
+    if (nums[k] > nums[i]) {
+      j = k;
+      break;
+    }
+  }
+
+  // switch nums[i] and nums[j]
+
+  let tmp = nums[i];
+  nums[i] = nums[j];
+  nums[j] = tmp;
+
+  // revert new array from i to end, to make it asc so it is smallest
+//   console.log(nums);
+//   console.log(`i: ${i}, j:${j}`);
+
+  return [...nums.slice(0, i+1), ...nums.slice(i+1, nums.length).reverse()]
 };
 
-
-
-
-
-
-
-console.log(nextPermutation([1,2,3])); // [1,3,2]
-console.log(nextPermutation([3,2,1])); // [1,2,3]
-console.log(nextPermutation([1,1,5])); // [1,5,1]
- 
+console.log(nextPermutation([1, 2, 3])); // [1,3,2]
+console.log(nextPermutation([3, 2, 1])); // [1,2,3]
+console.log(nextPermutation([1, 1, 5])); // [1,5,1]
+console.log(nextPermutation([1,2])); // [2,1]
+console.log(nextPermutation([1,3,2])); // [2,1,3]
+// console.log(nextPermutation(xxxxx)); // xxxxxxx
+// console.log(nextPermutation(xxxxx)); // xxxxxxx
 // console.log(nextPermutation(xxxxx)); // xxxxxxx
