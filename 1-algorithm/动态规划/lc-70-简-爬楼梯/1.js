@@ -7,11 +7,28 @@ https://leetcode.cn/problems/climbing-stairs/description/
  */
 
 /*
-
+1. 一把过，很简单
 */
 
 var climbStairs = function(n) {
-// todo
+
+    if (n === 1) {
+        return 1
+    }
+    if (n === 2) {
+        return 2
+    }
+
+    let nums = new Array(n).fill(0)
+    nums[0] = 1
+    nums[1] = 2
+
+    for (let i = 2; i < n; i++) {
+        nums[i] = nums[i-1] + nums[i-2] 
+    }
+
+    return nums[n-1]
+
 };
 
 console.log(climbStairs(2)); // 2
