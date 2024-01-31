@@ -6,3 +6,12 @@ https://leetcode.cn/problems/top-k-frequent-elements/description/
 
 题解： https://www.bilibili.com/video/BV1Qu4y1P7kg?p=12&vd_source=80df5fba01fe79535a6107a33a26594c
 */
+
+var topKFrequent = function(nums, k) {
+// todo
+};
+
+console.log(topKFrequent([1,1,1,2,2,3], 2)); //  [1,2]
+console.log(topKFrequent([1], 1)); // [1]
+// console.log(topKFrequent(xxxxxx)); // xxxxxxxx
+// console.log(topKFrequent(xxxxxx)); // xxxxxxxx

@@ -6,3 +6,18 @@ LCR 159. 库存管理 III
 
 题解 https://www.bilibili.com/video/BV1Qu4y1P7kg?p=11&vd_source=80df5fba01fe79535a6107a33a26594c
  */
+
+/*
+
+*/
+
+
+var inventoryManagement = function(stock, cnt) {
+//todo 
+};
+
+console.log(inventoryManagement( [2,5,7,4], 1)); // [2]
+console.log(inventoryManagement([0,2,3,6], 2)); // [0,2] 或 [2,0]
+// console.log(inventoryManagement(xxxxx, xx)); // xxx
+// console.log(inventoryManagement(xxxxx, xx)); // xxx
+// console.log(inventoryManagement(xxxxx, xx)); // xxx

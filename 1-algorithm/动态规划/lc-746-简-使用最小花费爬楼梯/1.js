@@ -8,3 +8,17 @@ https://leetcode.cn/problems/min-cost-climbing-stairs/description/
 请你计算并返回达到楼梯顶部的最低花费。
 
 */
+
+/*
+
+*/
+var minCostClimbingStairs = function(cost) {
+
+};
+
+
+console.log(minCostClimbingStairs([10,15,20])); // 15
+console.log(minCostClimbingStairs( [1,100,1,1,1,100,1,1,100,1])); // 6
+// console.log(minCostClimbingStairs(xxxxxxxxxxx)); // xxxxxx
+// console.log(minCostClimbingStairs(xxxxxxxxxxx)); // xxxxxx
+// console.log(minCostClimbingStairs(xxxxxxxxxxx)); // xxxxxx
