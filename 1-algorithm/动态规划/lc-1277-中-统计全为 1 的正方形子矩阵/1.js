@@ -4,6 +4,23 @@ https://leetcode.cn/problems/count-square-submatrices-with-all-ones
 */
 
 var countSquares = function(matrix) {
+  /*
+  
+  let preCount = min( 
+        dp(i-1, j-1),
+        dp(i-1, j),
+        dp(i, j-1),
+      )
+    if(preCount>0 && num(i, j)===1) {
+      dp(i, j) = preCount +1
+    } else {
+        dp(i, j) =0
+    }
+
+  dp(i, j) = 
+   */
+
+
 //  todo
 };
 
