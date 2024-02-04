@@ -22,7 +22,6 @@ nums 中 只有一个整数 出现 两次或多次 ，其余整数均只出现 �
 
 */
 var findDuplicate = function (nums) {
-  // todo
   let slow = nums[0];
   let fast = nums[nums[0]];
 
